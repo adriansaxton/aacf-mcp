@@ -5,7 +5,25 @@ A public, read-only [Model Context Protocol](https://modelcontextprotocol.io) se
 look up controls, criteria and cross-references, for example "which controls cover ISO/IEC 42001 clause 6.1.2".
 It serves the published release data and stores nothing.
 
-Work in progress: the data build is done; the server itself is next.
+Work in progress: the server is built and tested locally; it is not deployed yet.
+
+## Tools
+
+| Tool | What it answers |
+|---|---|
+| `get_framework_info` | Version, scale, overlays, owner roles, lifecycle stages, the standards cross-referenced, how to cite |
+| `list_domains` | Every domain and the controls in it |
+| `get_control` | One control in full, with its Level 3 criteria and cross-references |
+| `search_controls` | Controls by words, domain, overlay, owner role or lifecycle stage |
+| `get_mapping` | Which controls cover an item of a standard, for example ISO/IEC 42001 6.1.2 |
+| `get_standard_coverage` | Every cross-referenced item of one standard |
+| `get_assessment_questions` | Questions, evidence and applicable criteria for a self-assessment, one domain at a time |
+| `get_scoring_rules` | The assessor rulebook |
+
+The `self_assessment` prompt guides your assistant through an assessment. Your answers stay in your conversation:
+no tool accepts them, and the server stores nothing.
+
+Cross-references are coverage, not a compliance finding.
 
 ## How the data gets in
 
@@ -18,6 +36,19 @@ Work in progress: the data build is done; the server itself is next.
    directions, and the coverage counts.
 
 To move to a new AACF release, vendor its tag, rebuild and run the tests.
+
+## Server and tests
+
+`src/index.ts` is the Cloudflare Worker: the MCP endpoint is `/mcp`, built on the official MCP TypeScript SDK through
+`createMcpHandler`. It speaks the 2026-07-28 protocol and still serves 2025 Streamable HTTP clients. Requests that
+carry an `Origin` header must come from the AACF website; requests without one (MCP clients calling from their own
+servers) are accepted.
+
+`npm test` builds the data, bundles the Worker and runs a real MCP client against it in both protocol versions:
+every tool and the prompt must be listed and must answer, and the HTTP rules (route, methods, Origin, Host and
+the 2026-07-28 header checks) are tested directly. `npm run typecheck` runs TypeScript.
+
+Wrangler, used to run and deploy the Worker, needs Node.js 22.12 or later.
 
 ## Licences
 

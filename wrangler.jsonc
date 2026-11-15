@@ -1,0 +1,17 @@
+// The AACF MCP Worker. Serves only /mcp on aacf.adriansaxton.com; the site itself is the separate static Worker "aacf".
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "aacf-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-02",
+  "compatibility_flags": ["nodejs_compat"],
+  "build": { "command": "npm run build:data" },
+  "routes": [
+    { "pattern": "aacf.adriansaxton.com/mcp", "zone_name": "adriansaxton.com" },
+    { "pattern": "aacf.adriansaxton.com/mcp/*", "zone_name": "adriansaxton.com" }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+  // Metrics only: tool arguments are never logged (decision 7).
+  "observability": { "enabled": false }
+}

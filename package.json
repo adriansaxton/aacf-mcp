@@ -11,9 +11,19 @@
   "scripts": {
     "vendor": "node scripts/vendor-release.mjs",
     "build:data": "node scripts/build-data.mjs",
-    "test": "node --test test/"
+    "test": "npm run build:data && npm run test:bundle && node --test test/",
+    "typecheck": "tsc",
+    "test:bundle": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node20 --outfile=.test-build/worker.mjs --log-level=warning"
   },
   "devDependencies": {
-    "ajv": "8.20.0"
+    "@cloudflare/workers-types": "5.20261115.1",
+    "ajv": "8.20.0",
+    "typescript": "6.0.3",
+    "wrangler": "4.162.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.3.1",
+    "agents": "0.29.0",
+    "zod": "4.6.7"
   }
 }
