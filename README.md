@@ -48,7 +48,12 @@ servers) are accepted.
 every tool and the prompt must be listed and must answer, and the HTTP rules (route, methods, Origin, Host and
 the 2026-07-28 header checks) are tested directly. `npm run typecheck` runs TypeScript.
 
-Wrangler, used to run and deploy the Worker, needs Node.js 22.12 or later.
+Wrangler, used to run and deploy the Worker, needs Node.js 22.12 or later (`.node-version` pins 22).
+
+## Deployment
+
+Cloudflare Workers Builds deploys the `main` branch: build command `npm run build:data`, deploy command
+`npx wrangler deploy` (the default). The Worker name in Cloudflare must be `aacf-mcp`, matching `wrangler.jsonc`.
 
 ## Licences
 
