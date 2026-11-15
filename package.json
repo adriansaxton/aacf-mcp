@@ -1,0 +1,19 @@
+{
+  "name": "aacf-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public, read-only MCP server for the AI Adoption Controls Framework (AACF)",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "vendor": "node scripts/vendor-release.mjs",
+    "build:data": "node scripts/build-data.mjs",
+    "test": "node --test test/"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0"
+  }
+}

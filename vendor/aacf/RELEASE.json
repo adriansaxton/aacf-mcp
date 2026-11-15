@@ -1,0 +1,11 @@
+{
+  "tag": "v1.2.1",
+  "framework_version": "1.2.1",
+  "schema_version": "1.0.0",
+  "source": "https://raw.githubusercontent.com/adriansaxton/AACF/v1.2.1",
+  "sha256": {
+    "aacf.json": "c4f3fde7329f6396ac43f898d69bfb483769b0dfe59fa967176ceaec5d2eb09d",
+    "aacf.schema.json": "6c0490b9cb6dbfa32f166c7f5d394745fcd500745a990ef4135fb08b32b45093",
+    "rulebook.md": "6e0430dece164724ab71219940c1c0afb0a99950e0bf7a74296dbb95104f292c"
+  }
+}
