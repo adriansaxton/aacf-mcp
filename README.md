@@ -55,6 +55,13 @@ Wrangler, used to run and deploy the Worker, needs Node.js 22.12 or later (`.nod
 Cloudflare Workers Builds deploys the `main` branch: build command `npm run build:data`, deploy command
 `npx wrangler deploy` (the default). The Worker name in Cloudflare must be `aacf-mcp`, matching `wrangler.jsonc`.
 
+## MCP Registry
+
+Listed in the official [MCP Registry](https://registry.modelcontextprotocol.io/) as `com.adriansaxton/aacf`, from
+`server.json` (remote only, Streamable HTTP). Its `version` follows the AACF release the server serves, so a new AACF
+release means bumping it and publishing again with `mcp-publisher publish`. The namespace is proved by a DNS TXT record
+on adriansaxton.com.
+
 ## Licences
 
 The code in this repository is under the MIT licence (`LICENSE`). The framework content in `vendor/aacf/` and
